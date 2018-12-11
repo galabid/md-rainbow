@@ -515,6 +515,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 				multiple: '=?',
 
 				// Advanced options
+				okText: '@?',
+				cancelText: '@?',
 				mdColorClearButton: '=?',
 				mdColorPreview: '=?',
 
@@ -531,6 +533,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 			},
 			controller: ['$scope', '$element', '$attrs', '$mdDialog', '$mdRainbow', function ($scope, $element, $attrs, $mdDialog, $mdRainbow) {
 				var didJustClose = false;
+				var defaultOkText = 'Select';
+				var defaultCancelText = 'Cancel';
 
 				// Merge Options Object with scope.  Scope will take precedence much like css vs style attribute.
 				if ($scope.options !== undefined) {
@@ -560,6 +564,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 				// Defaults
 				// Everything is enabled by default.
+				$scope.defaultOkText = defaultOkText;
+				$scope.defaultCancelText = defaultCancelText;
+				$scope.okText = $scope.okText === undefined ? defaultOkText : $scope.okText;
+				$scope.cancelText = $scope.cancelText === undefined ? defaultCancelText : $scope.cancelText;
 				$scope.mdColorClearButton = $scope.mdColorClearButton === undefined ? true : $scope.mdColorClearButton;
 				$scope.mdColorPreview = $scope.mdColorPreview === undefined ? true : $scope.mdColorPreview;
 
@@ -612,6 +620,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 						preserveScope: $scope.preserveScope,
 						multiple: $scope.multiple,
 
+						okText: $scope.okText,
+						cancelText: $scope.cancelText,
 						mdColorAlphaChannel: $scope.mdColorAlphaChannel,
 						mdColorSpectrum: $scope.mdColorSpectrum,
 						mdColorSliders: $scope.mdColorSliders,
@@ -909,6 +919,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 				options.multiple = options.multiple === undefined ? true : options.multiple;
 
 				// mdRainbow Properties
+				options.okText = options.okText === undefined ? 'Select' : options.okText;
+				options.cancelText = options.cancelText === undefined ? 'Cancel' : options.cancelText;
 				options.mdColorAlphaChannel = options.mdColorAlphaChannel === undefined ? false : options.mdColorAlphaChannel;
 				options.mdColorSpectrum = options.mdColorSpectrum === undefined ? true : options.mdColorSpectrum;
 				options.mdColorSliders = options.mdColorSliders === undefined ? true : options.mdColorSliders;
@@ -940,6 +952,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 						$scope.default = options.defaultValue;
 						$scope.random = options.random;
 
+						$scope.okText = options.okText;
+						$scope.cancelText = options.cancelText;
 						$scope.mdColorAlphaChannel = options.mdColorAlphaChannel;
 						$scope.mdColorSpectrum = options.mdColorSpectrum;
 						$scope.mdColorSliders = options.mdColorSliders;
@@ -1009,7 +1023,7 @@ module.exports = "<div class=\"md-rainbow-container in\" layout=\"column\">\n\t<
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = "<md-dialog class=\"md-rainbow-dialog\">\n\t<div md-rainbow-container\n\t\tvalue=\"value\"\n\t\tdefault=\"{{defaultValue}}\"\n\t\trandom=\"{{random}}\"\n\t\tok=\"ok\"\n\t\tmd-color-alpha-channel=\"mdColorAlphaChannel\"\n\t\tmd-color-spectrum=\"mdColorSpectrum\"\n\t\tmd-color-sliders=\"mdColorSliders\"\n\t\tmd-color-generic-palette=\"mdColorGenericPalette\"\n\t\tmd-color-material-palette=\"mdColorMaterialPalette\"\n\t\tmd-color-history=\"mdColorHistory\"\n\t\tmd-color-hex=\"mdColorHex\"\n\t\tmd-color-rgb=\"mdColorRgb\"\n\t\tmd-color-hsl=\"mdColorHsl\"\n\t\tmd-color-default-tab=\"mdColorDefaultTab\"\n\t></div>\n\t<md-actions layout=\"row\">\n\t\t<md-button class=\"md-mini\" ng-click=\"close()\" style=\"width: 50%;\">Cancel</md-button>\n\t\t<md-button class=\"md-mini\" ng-click=\"ok()\" style=\"width: 50%;\">Select</md-button>\n\t</md-actions>\n</md-dialog>\n";
+module.exports = "<md-dialog class=\"md-rainbow-dialog\">\n\t<div md-rainbow-container\n\t\tvalue=\"value\"\n\t\tdefault=\"{{defaultValue}}\"\n\t\trandom=\"{{random}}\"\n\t\tok=\"ok\"\n\t\tmd-color-alpha-channel=\"mdColorAlphaChannel\"\n\t\tmd-color-spectrum=\"mdColorSpectrum\"\n\t\tmd-color-sliders=\"mdColorSliders\"\n\t\tmd-color-generic-palette=\"mdColorGenericPalette\"\n\t\tmd-color-material-palette=\"mdColorMaterialPalette\"\n\t\tmd-color-history=\"mdColorHistory\"\n\t\tmd-color-hex=\"mdColorHex\"\n\t\tmd-color-rgb=\"mdColorRgb\"\n\t\tmd-color-hsl=\"mdColorHsl\"\n\t\tmd-color-default-tab=\"mdColorDefaultTab\"\n\t></div>\n\t<md-actions layout=\"row\">\n\t\t<md-button class=\"md-mini\" ng-click=\"close()\" style=\"width: 50%;\">{{cancelText}}</md-button>\n\t\t<md-button class=\"md-mini\" ng-click=\"ok()\" style=\"width: 50%;\">{{okText}}</md-button>\n\t</md-actions>\n</md-dialog>\n";
 
 /***/ }),
 /* 5 */
